@@ -1,0 +1,218 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+
+    font-family: "Poppins", sans-serif;
+
+    color: #222;
+
+    line-height: 1.7;
+}
+
+
+/* Hero Section */
+
+.hero {
+    background: #12355b;
+
+    color: white;
+
+    text-align: center;
+
+    padding: 70px 20px;
+}
+
+.hero h1 {
+    margin: 0;
+
+    font-family: "Merriweather", serif;
+
+    font-size: 42px;
+}
+
+.tagline {
+    font-size: 18px;
+
+    margin-top: 10px;
+}
+
+
+/* Image Section */
+
+.image-section {
+    background: #f4f1ea;
+
+    text-align: center;
+
+    padding: 45px 20px;
+}
+
+.image-section img {
+    width: 260px;
+    height: 320px;
+
+    object-fit: cover;
+
+    border-radius: 10px;
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.image-section p {
+    max-width: 700px;
+
+    margin: 20px auto 0;
+}
+
+
+/* Common Section */
+
+.biography,
+.timeline {
+    max-width: 1000px;
+
+    margin: auto;
+
+    padding: 60px 20px;
+}
+
+h2 {
+    font-family: "Merriweather", serif;
+
+    text-align: center;
+
+    font-size: 30px;
+
+    margin-bottom: 30px;
+}
+
+
+/* Biography */
+
+.biography {
+    background: white;
+}
+
+.biography p {
+    margin-bottom: 20px;
+}
+
+
+/* Timeline */
+
+.timeline {
+    max-width: 100%;
+
+    background: #eaf2f8;
+}
+
+.timeline-list {
+    max-width: 900px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 20px;
+}
+
+.timeline-card {
+    background: white;
+
+    padding: 25px;
+
+    border-left: 5px solid #12355b;
+
+    border-radius: 8px;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.timeline-card h3 {
+    font-family: "Merriweather", serif;
+
+    margin-top: 0;
+
+    color: #12355b;
+}
+
+
+/* Quote */
+
+.quote-section {
+    background: #12355b;
+
+    color: white;
+
+    text-align: center;
+
+    padding: 70px 20px;
+}
+
+blockquote {
+    max-width: 800px;
+
+    margin: auto;
+
+    font-family: "Merriweather", serif;
+
+    font-size: 25px;
+
+    font-style: italic;
+}
+
+.quote-section p {
+    margin-top: 20px;
+}
+
+
+/* Footer */
+
+footer {
+    background: #111;
+
+    color: white;
+
+    text-align: center;
+
+    padding: 25px 15px;
+
+    font-size: 14px;
+}
+
+
+/* Responsive Design */
+
+@media (max-width: 700px) {
+
+    .hero h1 {
+        font-size: 30px;
+    }
+
+    .tagline {
+        font-size: 16px;
+    }
+
+    .image-section img {
+        width: 220px;
+        height: 280px;
+    }
+
+    .timeline-list {
+        grid-template-columns: 1fr;
+    }
+
+    h2 {
+        font-size: 25px;
+    }
+
+    blockquote {
+        font-size: 20px;
+    }
+
+}
