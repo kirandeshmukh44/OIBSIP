@@ -1,32 +1,7 @@
 require("dotenv").config();
-
-const express = require("express");
-const cors = require("cors");
-
-const connectDB = require("./config/db");
-const authRoutes = require("./routes/authRoutes");
-const pizzaRoutes = require("./routes/pizzaRoutes");
-const pizzaOptionRoutes = require("./routes/pizzaOptionRoutes");
-
-const app = express();
-
-connectDB();
-
-app.use(cors());
-app.use(express.json());
-
-app.use("/api/auth", authRoutes);
-app.use("/api/pizzas", pizzaRoutes);
-app.use("/api/pizza-options", pizzaOptionRoutes);
-
-app.get("/", (req, res) => {
-    res.json({
-        message: "Pizza Delivery API is running"
-    });
-});
-
-const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
-});
+const express=require("express"),cors=require("cors"),http=require("http"),{Server}=require("socket.io"),bcrypt=require("bcryptjs");
+const connectDB=require("./config/db"),Admin=require("./models/Admin"),authRoutes=require("./routes/authRoutes"),pizzaRoutes=require("./routes/pizzaRoutes"),pizzaOptionRoutes=require("./routes/pizzaOptionRoutes"),orderRoutes=require("./routes/orderRoutes"),paymentRoutes=require("./routes/paymentRoutes"),adminRoutes=require("./routes/adminRoutes"),errorHandler=require("./middleware/errorMiddleware"),startLowStockJob=require("./jobs/lowStockJob");
+const app=express(),server=http.createServer(app),allowed=(process.env.CLIENT_URL||"http://localhost:5173").split(","); const io=new Server(server,{cors:{origin:allowed,methods:["GET","POST"]}});app.set("io",io);
+io.on("connection",socket=>socket.on("join",userId=>userId&&socket.join(`user:${userId}`)));
+connectDB().then(async()=>{if(process.env.ADMIN_EMAIL&&process.env.ADMIN_PASSWORD&&!await Admin.findOne({email:process.env.ADMIN_EMAIL.toLowerCase()}))await Admin.create({name:process.env.ADMIN_NAME||"PizzaCraft Admin",email:process.env.ADMIN_EMAIL,password:await bcrypt.hash(process.env.ADMIN_PASSWORD,12)});});
+app.use(cors({origin:allowed,credentials:true}));app.use(express.json({limit:"100kb"}));app.use("/api/auth",authRoutes);app.use("/api/pizzas",pizzaRoutes);app.use("/api/pizza-options",pizzaOptionRoutes);app.use("/api/orders",orderRoutes);app.use("/api/payment",paymentRoutes);app.use("/api/admin",adminRoutes);app.get("/",(req,res)=>res.json({message:"Pizza Delivery API is running"}));app.use(errorHandler);startLowStockJob();const PORT=process.env.PORT||5000;server.listen(PORT,()=>console.log(`Server running on http://localhost:${PORT}`));

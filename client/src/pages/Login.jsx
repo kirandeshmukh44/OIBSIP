@@ -31,6 +31,7 @@ function Login() {
             }
 
             localStorage.setItem("token", data.token);
+            localStorage.setItem("user", JSON.stringify(data.user));
 
             window.location.href = "/dashboard";
 
@@ -82,6 +83,7 @@ function Login() {
                     Don't have an account?
                     <a href="/register"> Create account</a>
                 </p>
+                <p className="auth-bottom"><a href="/forgot-password">Forgot password?</a></p>
 
             </div>
 

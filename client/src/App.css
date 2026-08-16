@@ -27,6 +27,18 @@ button {
   cursor: pointer;
 }
 
+.form-error { color: #b42318; margin: 16px 0 0; font-size: 14px; }
+.form-message { color: #16703a !important; margin-top: 18px !important; }
+.checkout-card,.order-card { background:#fff; border:1px solid #e7e7e7; border-radius:14px; padding:24px; }
+.orders-list { display:grid; gap:14px; max-width:950px; }
+.order-card { display:flex; justify-content:space-between; gap:20px; align-items:center; }
+.order-card p { color:#666; margin:8px 0; font-size:14px; }
+.status { margin-left:12px; padding:4px 8px; border-radius:99px; font-size:12px; text-transform:capitalize; background:#fff0d5; color:#8a4b00; }.status.paid {background:#eaf7ed;color:#177239;}
+.tracking { display:flex; gap:12px; }.tracking div { color:#999; display:grid; justify-items:center; gap:5px; font-size:11px; }.tracking i {font-style:normal;background:#e5e5e5;color:#666;border-radius:50%;height:27px;width:27px;display:grid;place-items:center;}.tracking .active {color:#c92f3b;}.tracking .active i {background:#e63946;color:#fff;}
+.stats-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:14px;margin:20px 0 35px; }.stats-grid .dashboard-card {min-height:auto;padding:20px;}.stats-grid h2{margin:8px 0 0;}
+.inventory-form { display:grid; grid-template-columns:1.3fr 1fr repeat(2,.6fr) auto; gap:10px; margin:14px 0; }.inventory-form input,.inventory-form select { border:1px solid #ddd; border-radius:8px; padding:10px; background:#fff; }.stock-controls { display:flex; align-items:center; gap:10px; }.stock-controls .secondary-btn { padding:5px 11px; }
+@media (max-width:700px){.order-card{align-items:flex-start;flex-direction:column}.tracking{width:100%;justify-content:space-between}.navbar{padding:0 4%}.nav-links{gap:12px}.hero{grid-template-columns:1fr;padding:45px 24px}.hero h1{font-size:46px}.hero-pizza{display:none}.feature-grid,.builder-layout{grid-template-columns:1fr}.options-grid{grid-template-columns:1fr}.preview{position:static}.dashboard{padding:35px 20px}}
+
 /* ================= NAVBAR ================= */
 
 .navbar {

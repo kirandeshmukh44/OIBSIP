@@ -1,0 +1,2 @@
+const cron=require("node-cron"),Inventory=require("../models/Inventory"),{sendEmail}=require("../services/emailService");
+const startLowStockJob=()=>cron.schedule("0 */6 * * *",async()=>{try{const items=await Inventory.find({$expr:{$lt:["$quantity","$threshold"]}});if(items.length&&process.env.ADMIN_EMAIL)await sendEmail({to:process.env.ADMIN_EMAIL,subject:"PizzaCraft low stock alert",text:items.map(x=>`${x.name}: ${x.quantity} remaining (threshold ${x.threshold})`).join("\n")});}catch(e){console.error("Low stock job failed",e.message);}});module.exports=startLowStockJob;

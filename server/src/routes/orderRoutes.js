@@ -1,0 +1,1 @@
+const router=require("express").Router(); const protect=require("../middleware/authMiddleware"); const c=require("../controllers/orderController"); router.use(protect); router.route("/").get(c.getOrders).post(c.createOrder); router.get("/:id",c.getOrder); module.exports=router;
